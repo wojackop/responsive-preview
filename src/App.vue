@@ -89,11 +89,7 @@ const coverShow = ref(false)
               <i class="iconfont icon-icon_wangye"></i> 网址</span>
             <transition name="fade">
               <div style="display: inline-block ;">
-                <select v-model="protocol" class="protocol">
-                  <option value="http" class="protocol-value">http</option>
-                  <option value="https" class="protocol-value">https</option>
-                </select>
-                <span style="font-size: 16px;">://</span>
+                <span style="font-size: 16px;">{{protocol}}://</span>
                 <input type="text" placeholder="请输入网址" v-model.trim="url" class="url">
               </div>
             </transition>
@@ -101,19 +97,19 @@ const coverShow = ref(false)
           <transition name="fade">
             <div class="custom" v-if="customURL">
               <div class="laptop">
-                <span><i class="iconfont icon-wangye"></i> 笔记本</span><span>https://</span><input type="text"
+                <span><i class="iconfont icon-wangye"></i> 笔记本</span><span>{{ protocol }}://</span><input type="text"
                   placeholder="请输入网址" v-model.trim="laptop" class="url">
               </div>
               <div class="phone">
-                <span><i class="iconfont icon-shumashouji"></i> 手机</span><span>https://</span><input type="text"
+                <span><i class="iconfont icon-shumashouji"></i> 手机</span><span>{{ protocol }}://</span><input type="text"
                   placeholder="请输入网址" v-model.trim="phone" class="url">
               </div>
               <div class="pad">
-                <span><i class="iconfont icon-pingban"></i> 平板</span><span>https://</span><input type="text"
+                <span><i class="iconfont icon-pingban"></i> 平板</span><span>{{ protocol }}://</span><input type="text"
                   placeholder="请输入网址" v-model.trim="pad" class="url">
               </div>
               <div class="computer">
-                <span><i class="iconfont icon-diannao"></i> 电脑</span><span>https://</span><input type="text"
+                <span><i class="iconfont icon-diannao"></i> 电脑</span><span>{{ protocol }}://</span><input type="text"
                   placeholder="请输入网址" v-model.trim="computer" class="url">
               </div>
               <div class="close" @click="customURL = false"><i class="iconfont icon-cancel-1-copy"></i></div>
@@ -130,6 +126,11 @@ const coverShow = ref(false)
             <input type="checkbox" v-model="scrollBar" v-show="false" />
           </label>
         </div>
+        <!-- https选择 -->
+        <select v-model="protocol" class="protocol">
+          <option value="http" class="protocol-value">http</option>
+          <option value="https" class="protocol-value">https</option>
+        </select>
       </div>
     </transition>
   </section>
@@ -368,17 +369,7 @@ body {
           }
         }
       }
-      
-      .protocol{
-          appearance: none;
-          background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="%23fff"><polygon points="0,0 10,0 5,5"/></svg>') no-repeat left center; /* 使用 SVG 图标 */
-          background-color: rgba(37, 37, 37, 0.8);
-          padding-left: 15px; /* 为箭头图标留出空间 */
-          color: rgba(255, 255, 255, 0.8);
-          height: 40px;
-          font-size: 16px;
-          border-radius: 15%;
-        }
+
       .custom {
         position: absolute;
         top: 70px;
@@ -403,7 +394,7 @@ body {
         width: 120px;
         height: 30px;
         padding: 4px 10px 4px 0;
-        margin-left: 5px;
+        margin-left: 2px;
         font-family: Avenir, Helvetica, Arial, sans-serif;
         font-size: 16px;
         color: rgba(255, 255, 255, 0.8);
@@ -422,6 +413,21 @@ body {
       }
 
     }
+
+    .protocol {
+        appearance: none;
+        margin-left: 20px;
+        text-align-last: center;
+        background-color: rgba(97, 97, 97, 0.8);
+        color: rgba(255, 255, 255, 0.8);
+        height: 30px;
+        width: 70px;
+        font-size: 16px;
+        padding: 0 5px;
+        border-radius: 20px;
+        align-items: center;
+        justify-content: center;
+      }
 
     .scroll-bar {
       margin-left: 20px;
