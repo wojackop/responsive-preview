@@ -377,6 +377,7 @@ body {
           color: rgba(255, 255, 255, 0.8);
           height: 40px;
           font-size: 16px;
+          border-radius: 15%;
         }
       .custom {
         position: absolute;
