@@ -29,6 +29,7 @@ const handleActiveDevice = (device: Device) => {
 //——————————————————————————————————————————————————————————————————————————————————————
 
 // 网址处理
+const protocol = ref('https');     // 默认协议为 https
 const url = ref('www.liushen.fun')
 const phone = ref('')
 const pad = ref('')
@@ -62,20 +63,20 @@ const coverShow = ref(false)
     <div class="preview-box">
       <div class="computer" :class="{ active: activeDevice === Device.computer, activated: activeDevice }"
         @click.stop="handleActiveDevice(Device.computer)">
-        <iframe :src="`https://${url || computer}`" frameborder="0" :scrolling="scrollBar ? 'yes' : 'no'"></iframe>
+        <iframe :src="`${protocol}://${url || computer}`" frameborder="0" :scrolling="scrollBar ? 'yes' : 'no'"></iframe>
       </div>
       <div class="laptop" :class="{ active: activeDevice === Device.laptop, activated: activeDevice }"
         @click.stop="handleActiveDevice(Device.laptop)">
-        <iframe :src="`https://${url || laptop}`" frameborder="0" :scrolling="scrollBar ? 'yes' : 'no'"></iframe>
+        <iframe :src="`${protocol}://${url || laptop}`" frameborder="0" :scrolling="scrollBar ? 'yes' : 'no'"></iframe>
       </div>
 
       <div class="phone" :class="{ active: activeDevice === Device.phone, activated: activeDevice }"
         @click.stop="handleActiveDevice(Device.phone)">
-        <iframe :src="`https://${url || phone}`" frameborder="0" :scrolling="scrollBar ? 'yes' : 'no'"></iframe>
+        <iframe :src="`${protocol}://${url || phone}`" frameborder="0" :scrolling="scrollBar ? 'yes' : 'no'"></iframe>
       </div>
       <div class="pad" :class="{ active: activeDevice === Device.pad, activated: activeDevice }"
         @click.stop="handleActiveDevice(Device.pad)">
-        <iframe :src="`https://${url || pad}`" frameborder="0" :scrolling="scrollBar ? 'yes' : 'no'"></iframe>
+        <iframe :src="`${protocol}://${url || pad}`" frameborder="0" :scrolling="scrollBar ? 'yes' : 'no'"></iframe>
       </div>
     </div>
     <!-- -------------------------------------------------------------- -->
@@ -88,7 +89,11 @@ const coverShow = ref(false)
               <i class="iconfont icon-icon_wangye"></i> 网址</span>
             <transition name="fade">
               <div style="display: inline-block ;">
-                <span>https://</span>
+                <select v-model="protocol" class="protocol">
+                  <option value="http" class="protocol-value">http</option>
+                  <option value="https" class="protocol-value">https</option>
+                </select>
+                <span style="font-size: 16px;">://</span>
                 <input type="text" placeholder="请输入网址" v-model.trim="url" class="url">
               </div>
             </transition>
@@ -348,6 +353,7 @@ body {
       .website,
       .custom span:first-child {
         margin-right: 10px;
+
       }
 
       .website {
@@ -362,7 +368,16 @@ body {
           }
         }
       }
-
+      
+      .protocol{
+          appearance: none;
+          background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="%23fff"><polygon points="0,0 10,0 5,5"/></svg>') no-repeat left center; /* 使用 SVG 图标 */
+          background-color: rgba(37, 37, 37, 0.8);
+          padding-left: 15px; /* 为箭头图标留出空间 */
+          color: rgba(255, 255, 255, 0.8);
+          height: 40px;
+          font-size: 16px;
+        }
       .custom {
         position: absolute;
         top: 70px;
@@ -469,5 +484,10 @@ body {
       transform: translate(-50%) scale(0.4);
     }
   }
+
+
+
+
 }
+
 </style>
