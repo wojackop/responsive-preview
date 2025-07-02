@@ -157,6 +157,8 @@ body {
   color: #333;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   user-select: none;
+  height: 100vh;
+  background-color: white;
 }
 
 .main {
