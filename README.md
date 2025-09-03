@@ -2,14 +2,21 @@
 
 [示例网站](https://pv.gyhwd.top) | [个人主页](https://gh.gyhwd.top)
 
+🌐 输入网址，一键生成手机、平板、笔记本、电脑多端带壳预览图
+
 ## 项目简介
-本项目基于 [himkiong 的 multiterminal-preview](https://github.com/himkiong/multiterminal-preview) 进行开发，旨在生成多端设备（手机、平板、笔记本、电脑）预览图，通过 `iframe` 实现实时网站预览，并展示不同设备外壳的截图效果。用户可以在不同设备之间切换预览，支持自定义网址输入。
+本项目基于 [himkiong 的 multiterminal-preview](https://github.com/himkiong/multiterminal-preview) 进行开发，旨在生成手机、平板、笔记本、电脑等多种设备的带壳预览图。通过 `iframe` 实现对目标网站的实时加载与预览，并叠加设备外壳，真实还原多端浏览效果。用户可自由切换设备类型，并支持自定义输入任意网址，便于响应式设计的快速验证与分享。
+
+项目采用 **Vue 3 + Vite** 构建，是一个纯静态前端应用，无需后端服务，开箱即用。通过 **GitHub Actions 自动化工作流**，每次代码提交至主分支后，系统会自动构建项目，将生成的 `dist` 目录内容发布至 `page` 分支，并由 GitHub Pages 自动部署上线，真正实现“**git push 即发布**”的高效开发体验。
 
 ## 功能特点
-- 支持手机、平板、笔记本和电脑的预览。
-- 实时显示目标网站内容，便于多设备兼容性测试。
-- 可选择是否显示滚动条，模拟真实的浏览体验。
-- 自定义输入不同设备的预览网址，灵活性强。
+
+- 📱 **多设备支持**：涵盖手机、平板、笔记本、电脑四种主流设备形态。
+- 🔁 **实时预览**：通过 `iframe` 动态加载目标网站，所见即所得。
+- 🎚️ **细节可控**：可切换是否显示滚动条，模拟真实浏览体验。
+- 🌐 **自由跳转**：支持自定义输入任意网址，灵活适配本地或线上站点。
+- 🤖 **自动化部署**：集成 GitHub Actions，代码推送自动构建发布，文档更新（如 README）不触发，高效且安静。
+- 🚫 **智能过滤**：仅在源码、配置等关键文件变更时触发 CI/CD，避免无效构建。
 
 ## 使用方法
 1. 克隆项目到本地：
@@ -35,4 +42,16 @@
 ![展示](./img/display.png)
 
 ## 贡献指南
-本项目欢迎任何形式的改进和建议！如果你有好的想法，欢迎提交 PR。
+
+欢迎任何形式的贡献！无论是修复 Bug、优化 UI，还是新增设备外壳，都十分感谢。
+
+你可以：
+
+- 🐛 提交 Issue 报告问题
+- 🌱 Fork 项目并提交 Pull Request
+- 💬 分享使用场景或改进建议
+
+## 致谢
+
+- [清羽飞扬]项目：[willow-god](https://github.com/willow-god)[multi-terminal-screenshot](https://github.com/willow-god/multi-terminal-screenshot)
+- 技术栈：Vue 3 + Vite + GitHub Actions
