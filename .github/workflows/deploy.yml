@@ -1,0 +1,56 @@
+name: 🚀 Build and Deploy to Page Branch
+
+# 🔁 触发方式：push + 手动触发（双模式）
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+    # 允许在 Actions 页面手动点击运行
+    description: "Manually trigger the deployment"
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    name: 🏗️ Build and Deploy
+
+    steps:
+      - name: 🔁 Checkout Code
+        uses: actions/checkout@v4
+
+      - name: 💾 Cache Node Modules
+        uses: actions/cache@v3
+        with:
+          # 使用 npm 全局缓存目录，更稳定
+          path: ~/.npm
+          # 缓存 key：操作系统 + Node + package-lock.json 内容哈希
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          # 兜底匹配：提高缓存命中率
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: ⚙️ Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'  # 启用 npm 缓存（可选，与上面的 cache 配合）
+
+      - name: 📦 Install Dependencies
+        run: npm install
+
+      - name: 🏗️ Build Project (Production)
+        run: npm run build
+
+      - name: 🚀 Deploy to 'page' Branch
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          # 使用 GitHub 自动提供的 token
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # 部署到 page 分支
+          publish_branch: page
+          # 部署 dist 目录下的内容（不会包含 dist 文件夹本身）
+          publish_dir: ./dist
+          # 可选：设置提交信息
+          commit_message: |
+            Deploy from GitHub Actions
+            Action: ${{ github.workflow }} (Ref: ${{ github.ref }})
