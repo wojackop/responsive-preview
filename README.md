@@ -19,21 +19,49 @@
 - 🚫 **智能过滤**：仅在源码、配置等关键文件变更时触发 CI/CD，避免无效构建。
 
 ## 使用方法
+
+### 本地部署：
+
 1. 克隆项目到本地：
    ```bash
    git clone https://github.com/willow-god/multi-terminal-screenshot.git
    ```
+   
 2. 安装依赖：
    ```bash
    npm install --save
    ```
-3. 启动项目：
+   
+3.  启动开发服务器（用于调试）：
    ```bash
    npm run dev
    ```
-4. 在浏览器中打开 `localhost:5173`，即可访问多端预览工具。
+   
+   在浏览器中打开 `localhost:5173`，即可访问多端预览工具。
+
+4. 构建生产版本（生成 dist，用于静态部署）
+
+   ```bash
+   npm run build
+   ```
+
+### 在线部署：
+
+由于 `page` 分支已经是静态文件了，直接用 **GitHub Pages** 就足够了！
+
+如果要在 Vercel 部署 page 分支，需要控制台进行单独设置：
+
+1. 进入项目 → **Settings → Build & Deploy**
+2. 修改：
+   - **Build Command**: `echo "Static site, no build needed"`
+   - **Output Directory**: `.`
+   - **Framework Preset**: `None`
+3. 保存并重新部署
+
+这样 Vercel 就不会执行构建，而是直接发布静态文件。
 
 ## 文件结构
+
 - `src/`: 项目主要代码。
 - `public/`: 静态资源存放文件夹（如 favicon）。
 - `index.html`: 项目的 HTML 入口文件。
