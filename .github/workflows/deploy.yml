@@ -5,6 +5,11 @@ on:
   push:
     branches:
       - main
+    paths-ignore:
+      - '*.md'
+      - 'LICENSE'
+      - 'LICENSE.*'
+      - '.gitignore'
   workflow_dispatch:
     # 允许在 Actions 页面手动点击运行
     description: "Manually trigger the deployment"
