@@ -26,17 +26,18 @@
    ```bash
    git clone https://github.com/willow-god/multi-terminal-screenshot.git
    ```
-   
+
 2. 安装依赖：
    ```bash
    npm install --save
    ```
-   
-3.  启动开发服务器（用于调试）：
+
+3. 启动开发服务器（用于调试）：
+
    ```bash
    npm run dev
    ```
-   
+
    在浏览器中打开 `localhost:5173`，即可访问多端预览工具。
 
 4. 构建生产版本（生成 dist，用于静态部署）
